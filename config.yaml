@@ -1,0 +1,100 @@
+# Configuration file for ORM Psoriasis Analysis Pipeline
+
+# Data sources
+data:
+  zenodo_id: "4009497"
+  zenodo_doi: "10.5281/zenodo.4009497"
+  dataset_name: "Manually curated and harmonised transcriptomics datasets of psoriasis"
+  publication: "Federico et al., Sci Data 7, 153 (2020)"
+
+# Analysis parameters
+analysis:
+  # Expression analysis
+  expression:
+    normalization_method: "log2"  # log2, zscore, quantile
+    pseudocount: 1
+    
+  # Differential expression
+  differential_expression:
+    method: "ttest"  # ttest, mannwhitneyu
+    p_value_threshold: 0.05
+    log2fc_threshold: 1.0
+    
+  # Correlation analysis
+  correlation:
+    method: "pearson"  # pearson, spearman
+    min_correlation: 0.5
+    p_value_threshold: 0.05
+    
+  # Pathway enrichment
+  pathway_enrichment:
+    method: "hypergeometric"
+    p_value_threshold: 0.05
+    min_genes: 5
+
+# Output settings
+output:
+  base_directory: "results"
+  create_subdirs: true
+  save_figures: true
+  figure_format: "png"  # png, pdf, svg
+  dpi: 300
+  save_tables: true
+  table_format: "csv"  # csv, xlsx
+  generate_html_report: true
+
+# Genes of interest
+genes:
+  primary:
+    - "ORM1"
+    - "ORM2"
+  
+  related_genes:
+    - "CRP"      # C-reactive protein
+    - "SAA1"     # Serum amyloid A
+    - "HP"       # Haptoglobin
+    - "FN1"      # Fibronectin
+    - "AGT"      # Angiotensinogen
+
+# Pathways for enrichment analysis
+pathways:
+  inflammatory_response:
+    - "TNF signaling"
+    - "NF-κB pathway"
+    - "IL-6/STAT3 pathway"
+  
+  immune_response:
+    - "T cell activation"
+    - "B cell activation"
+    - "Antigen presentation"
+  
+  acute_phase_response:
+    - "Acute phase proteins"
+    - "Serum proteins"
+    - "Hepatic response"
+
+# Transcription factors for TFBS analysis
+transcription_factors:
+  inflammatory:
+    - "NF-κB"
+    - "STAT3"
+    - "AP-1"
+  
+  developmental:
+    - "C/EBP"
+    - "CREB"
+    - "IRF"
+
+# Visualization settings
+visualization:
+  style: "seaborn"
+  color_palette: "husl"
+  figure_size: [10, 8]
+  
+  plots:
+    box_plot: true
+    violin_plot: true
+    heatmap: true
+    volcano_plot: true
+    network: true
+    umap: false  # Requires single-cell data
