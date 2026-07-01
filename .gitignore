@@ -1,0 +1,35 @@
+# Data files
+data/*.csv
+data/*.tsv
+data/*.xlsx
+data/*.json
+!data/.gitkeep
+
+# Results
+results/
+*.pdf
+*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
